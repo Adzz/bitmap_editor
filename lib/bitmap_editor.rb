@@ -1,16 +1,19 @@
 class BitmapEditor
+  attr_reader :bitmaps
 
-  def run(file)
-    return puts "please provide correct file" if file.nil? || !File.exists?(file)
+  def initialize
+    @bitmaps = []
+  end
 
-    File.open(file).each do |line|
-      line = line.chomp
-      case line
-      when 'S'
-          puts "There is no image"
-      else
-          puts 'unrecognised command :('
-      end
+  def run(command_string)
+    command, *args = command_string.split
+    case command
+    when 'I'
+      bitmaps << Bitmap.new(args)
+    when 'S'
+        puts "There is no image"
+    else
+        puts 'unrecognised command :('
     end
   end
 end
