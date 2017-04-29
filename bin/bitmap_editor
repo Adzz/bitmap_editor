@@ -29,6 +29,6 @@ puts
 
 begin
   BatchRunner.new(ARGV.first).run
-rescue Exception => e
+rescue StandardError => e
   puts e
 end
