@@ -9,5 +9,10 @@ RSpec.describe BatchRunner do
       expect(task).to receive(:run).with('Test command').twice
       batch_runner.run
     end
+
+    it 'raises an error for an invalid file' do
+      message = 'please provide correct file'
+      expect { described_class.new('not a file', task) }.to raise_error ArgumentError, message
+    end
   end
 end
