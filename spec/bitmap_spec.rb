@@ -10,4 +10,20 @@ RSpec.describe Bitmap do
     message = 'Height and Width must be numbers'
     expect{ described_class.new(["A", "B"]) }.to raise_error error, message
   end
+
+  describe '#image' do
+    let(:default_color) { "A" }
+    subject(:bitmap) { described_class.new(["2", "2"], default_color) }
+
+    it 'creates an image of the default colour' do
+      expect(subject.image).to eq [["A", "A"], ["A", "A"]]
+    end
+
+    it 'with the correct height and width' do
+      # height
+      expect(subject.image.length).to eq 2
+      # width
+      expect(subject.image.first.length).to eq 2
+    end
+  end
 end
