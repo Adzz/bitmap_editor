@@ -16,14 +16,14 @@ RSpec.describe Bitmap do
     subject(:bitmap) { described_class.new(["2", "2"], default_color) }
 
     it 'creates an image of the default colour' do
-      expect(subject.image).to eq [["A", "A"], ["A", "A"]]
+      expect(bitmap.image).to eq [["A", "A"], ["A", "A"]]
     end
 
     it 'with the correct height and width' do
       # height
-      expect(subject.image.length).to eq 2
+      expect(bitmap.image.length).to eq 2
       # width
-      expect(subject.image.first.length).to eq 2
+      expect(bitmap.image.first.length).to eq 2
     end
   end
 end

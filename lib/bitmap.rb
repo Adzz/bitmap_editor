@@ -1,16 +1,18 @@
 class Bitmap
+  attr_reader :height, :width
+
   def initialize(args, default_color = "O")
     validate_args(args)
     @default_color = default_color
   end
 
   def image
-    Array.new(height, Array.new(width, default_color))
+    @image ||= Array.new(height, Array.new(width, default_color))
   end
 
   private
 
-  attr_reader :height, :width, :default_color
+  attr_reader :default_color
 
   def validate_args(args)
     raise BitmapEditorErrors::BitmapCreationError unless args.count == 2
