@@ -1,5 +1,5 @@
 RSpec.describe Bitmap do
-  let(:error) { error = BitmapEditorErrors::BitmapCreationError }
+  let(:error) { BitmapEditorError::BitmapCreationError }
   let(:message) { 'Bitmaps need a Height AND Width!' }
 
   it 'validates the number of params' do
@@ -7,7 +7,7 @@ RSpec.describe Bitmap do
   end
 
   it 'validates the params are numbers' do
-    message = 'Height and Width must be numbers'
+    message = "Height and Width must be numbers"
     expect{ described_class.new(["A", "B"]) }.to raise_error error, message
   end
 

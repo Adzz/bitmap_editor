@@ -11,7 +11,7 @@ class BitmapEditor
     when 'I'
       @bitmap = bitmapKlass.new(args)
     when 'C'
-      # what happens when there is no bitmap to begin with?
+      raise BitmapEditorError::NoBitmap unless @bitmap
       @bitmap = bitmapKlass.new(["#{bitmap.width}", "#{bitmap.height}"])
     when 'S'
         puts "There is no image"

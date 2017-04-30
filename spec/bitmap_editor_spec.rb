@@ -22,6 +22,8 @@ RSpec.describe BitmapEditor do
 
     describe 'C command - resets all colors to default color' do
       let(:command) { "C" }
+      let(:error) { BitmapEditorError::NoBitmap }
+      let(:message) { "There's no bitmap to edit! We need to make one first" }
 
       before do
         allow(bitmap_instance).to receive(:width).and_return(2)
@@ -29,10 +31,13 @@ RSpec.describe BitmapEditor do
       end
 
       it 'turns all pixels to the default color' do
-        # connasence? Depends on there being a bitmap
         bitmap_editor.run("I 2 2")
         expect(bitmap_klass).to receive(:new).with(["2", "2"])
         bitmap_editor.run("C")
+      end
+
+      it 'raises an error if there is no bitmap to clear' do
+        expect { bitmap_editor.run("C") }.to raise_error error, message
       end
     end
   end

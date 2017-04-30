@@ -15,9 +15,9 @@ class Bitmap
   attr_reader :default_color
 
   def validate_args(args)
-    raise BitmapEditorErrors::BitmapCreationError unless args.count == 2
+    raise BitmapEditorError::BitmapCreationError unless args.count == 2
     if args.any? { |arg| letter?(arg) }
-      raise BitmapEditorErrors::BitmapCreationError, "Height and Width must be numbers"
+      raise BitmapEditorError::BitmapCreationError, "Height and Width must be numbers"
     end
     @width = args.first.to_i
     @height = args[1].to_i
