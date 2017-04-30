@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
+require './lib/bitmap_editor_error/bitmap_creation_error'
+require './lib/bitmap_editor_error/no_bitmap'
 require './lib/batch_runner'
 require './lib/bitmap'
 require './lib/bitmap_editor'
-require './lib/bitmap_editor_error/no_bitmap'
-require './lib/bitmap_editor_error/bitmap_creation_error'
 
 puts "Get Ready..."
 sleep(1)

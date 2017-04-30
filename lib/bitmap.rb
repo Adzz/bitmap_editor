@@ -10,6 +10,10 @@ class Bitmap
     @image ||= Array.new(height, Array.new(width, default_color))
   end
 
+  def to_s
+    image.map(&:join).join("\n")
+  end
+
   private
 
   attr_reader :default_color

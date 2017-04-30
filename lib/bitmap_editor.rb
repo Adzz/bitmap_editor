@@ -1,7 +1,7 @@
 class BitmapEditor
   attr_reader :bitmap
 
-  def initialize(bitmapKlass = BitmapKlass)
+  def initialize(bitmapKlass = Bitmap)
     @bitmapKlass = bitmapKlass
   end
 
@@ -14,9 +14,10 @@ class BitmapEditor
       raise BitmapEditorError::NoBitmap unless @bitmap
       @bitmap = bitmapKlass.new(["#{bitmap.width}", "#{bitmap.height}"])
     when 'S'
-        puts "There is no image"
+      raise BitmapEditorError::NoBitmap unless @bitmap
+      puts bitmap
     else
-        puts 'unrecognised command :('
+      puts 'unrecognised command :('
     end
   end
 

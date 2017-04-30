@@ -1,6 +1,8 @@
 RSpec.describe Bitmap do
   let(:error) { BitmapEditorError::BitmapCreationError }
   let(:message) { 'Bitmaps need a Height AND Width!' }
+  let(:default_color) { "A" }
+  subject(:bitmap) { described_class.new(["2", "2"], default_color) }
 
   it 'validates the number of params' do
     expect{ described_class.new(["5"]) }.to raise_error error, message
@@ -12,9 +14,6 @@ RSpec.describe Bitmap do
   end
 
   describe '#image' do
-    let(:default_color) { "A" }
-    subject(:bitmap) { described_class.new(["2", "2"], default_color) }
-
     it 'creates an image of the default colour' do
       expect(bitmap.image).to eq [["A", "A"], ["A", "A"]]
     end
@@ -24,6 +23,12 @@ RSpec.describe Bitmap do
       expect(bitmap.image.length).to eq 2
       # width
       expect(bitmap.image.first.length).to eq 2
+    end
+  end
+
+  describe '#to_s' do
+    it 'creates a string representation of the bitmap' do
+      expect(bitmap.to_s).to eq "AA\nAA"
     end
   end
 end
