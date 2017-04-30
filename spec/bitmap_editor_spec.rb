@@ -32,7 +32,7 @@ RSpec.describe BitmapEditor do
       end
 
       it 'turns all pixels to the default color' do
-        bitmap_editor.run("I 2 2")
+        create_bitmap(bitmap_editor)
         expect(bitmap_klass).to receive(:new).with(["2", "2"])
         bitmap_editor.run( "C")
       end
@@ -44,7 +44,7 @@ RSpec.describe BitmapEditor do
 
     describe 'S commamnd - outputs to standard out' do
       it 'calls puts on the bitmap' do
-        bitmap_editor.run("I 2 2")
+        create_bitmap(bitmap_editor)
         expect(bitmap_instance).to receive(:to_s).once
         bitmap_editor.run("S")
       end
@@ -52,6 +52,37 @@ RSpec.describe BitmapEditor do
       it 'raises a no bitmap error if there is no bitmap to show' do
         expect { bitmap_editor.run("S") }.to raise_error no_bitmap_error, no_bitmap_message
       end
+    end
+
+    describe 'L command - colour a pixel at a given coordinate' do
+      let(:colour_a_pix_klass) { double Command::ColourAPixel }
+      let(:colour_a_pix_instance) { instance_double Command::ColourAPixel }
+      subject(:bitmap_editor) { described_class.new(bitmap_klass, colour_a_pix_klass) }
+
+      before do
+        allow(colour_a_pix_klass).to receive(:new).and_return(colour_a_pix_instance)
+        allow(colour_a_pix_instance).to receive(:execute)
+      end
+
+      it 'raises a no bitmap error if there is no bitmap to show' do
+        expect { bitmap_editor.run("S") }.to raise_error no_bitmap_error, no_bitmap_message
+      end
+
+      it 'instantiates the colour pixel command with correct params' do
+        create_bitmap(bitmap_editor)
+        expect(colour_a_pix_klass).to receive(:new).with(bitmap_instance, ["1", "1", "R"]).once
+        bitmap_editor.run("L 1 1 R")
+      end
+
+      it 'calls execute' do
+        create_bitmap(bitmap_editor)
+        expect(colour_a_pix_instance).to receive(:execute).once
+        bitmap_editor.run("L 1 1 R")
+      end
+    end
+
+    def create_bitmap(bitmap_editor)
+      bitmap_editor.run("I 2 2")
     end
   end
 end
