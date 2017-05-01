@@ -1,25 +1,15 @@
 RSpec.describe Bitmap do
-  let(:error) { BitmapEditorError::BitmapCreationError }
-  let(:message) { 'Bitmaps need a Height AND Width!' }
-  subject(:bitmap) { described_class.new(["2", "2"]) }
+  let(:validator) { instance_double Validators::CoordinateValidator }
+  subject(:bitmap) { described_class.new(["2", "2"], validator) }
+
+  before do
+    allow(validator).to receive(:call)
+  end
 
   context 'validations' do
-    it 'validates the number of params' do
-      expect{ described_class.new(["5"]) }.to raise_error error, message
-    end
-
-    it 'validates the params are numbers' do
-      message = "Height and Width must be numbers"
-      expect{ described_class.new(["A", "B"]) }.to raise_error error, message
-    end
-
-    it "ensures it can't be bigger than the max height and width" do
-      stub_const('Bitmap::BOARD_RANGE', (1..30).to_a)
-      message = "Height and Width must be between 1 and 30"
-      expect{ described_class.new(["1", "100"]) }.to raise_error error, message
-      expect{ described_class.new(["100", "1"]) }.to raise_error error, message
-      expect{ described_class.new(["0", "0"]) }.to raise_error error, message
-      expect{ described_class.new(["100", "100"]) }.to raise_error error, message
+    it "validates the coordinates" do
+      expect(validator).to receive(:call).with(2, 2).once
+      bitmap
     end
   end
 

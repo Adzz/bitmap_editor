@@ -1,18 +1,33 @@
 RSpec.describe BitmapEditor do
   let(:bitmap_klass) { double Bitmap }
   let(:bitmap_instance) { instance_double Bitmap }
-  let(:no_bitmap_error) { BitmapEditorError::NoBitmap }
-  let(:no_bitmap_message) { "There's no bitmap to edit! We need to make one first" }
-  subject(:bitmap_editor) { described_class.new(bitmap_klass) }
+  let(:no_bitmap_error) { BitmapEditorErrors::NoBitmap }
+  let(:no_bitmap_message) { "There's no bitmap! We need to make one first" }
+  let(:validator_klass) { double Validators::ArgumentValidator }
+  let(:validator) { instance_double Validators::ArgumentValidator }
+  subject(:bitmap_editor) { described_class.new(bitmap_klass, validator_klass) }
 
   describe '#run' do
-    before { allow(bitmap_klass).to receive(:new).and_return(bitmap_instance) }
+    before do
+      allow(bitmap_klass).to receive(:new).and_return(bitmap_instance)
+      allow(validator_klass).to receive(:new).and_return(validator)
+      allow(validator).to receive(:call)
+    end
+
+    it 'raises an error if a bitmap is edited before it is created' do
+      expect { bitmap_editor.run("C") }.to raise_error no_bitmap_error, no_bitmap_message
+    end
+
+    it 'sends the command and arguments to the argument validator' do
+      expect(validator).to receive(:call).with("I", ["2", "2"]).once
+      create_bitmap(bitmap_editor)
+    end
 
     describe 'I command - new bitmap' do
       let(:command) { "I 5 5" }
 
       it 'creates a new bitmap' do
-        bitmap_editor.run(command)
+        create_bitmap(bitmap_editor)
         expect(bitmap_editor.bitmap).to eq bitmap_instance
       end
 
@@ -23,7 +38,7 @@ RSpec.describe BitmapEditor do
     end
 
     describe 'C command - resets all colors to default color' do
-      let(:error) { BitmapEditorError::NoBitmap }
+      let(:error) { BitmapEditorErrors::NoBitmap }
       let(:message) { "There's no bitmap to edit! We need to make one first" }
 
       before do
@@ -55,17 +70,13 @@ RSpec.describe BitmapEditor do
     end
 
     describe 'L command - colour a pixel at a given coordinate' do
-      let(:colour_a_pix_klass) { double Command::ColourAPixel }
-      let(:colour_a_pix_instance) { instance_double Command::ColourAPixel }
-      subject(:bitmap_editor) { described_class.new(bitmap_klass, colour_a_pix_klass) }
-
       before do
-        allow(colour_a_pix_klass).to receive(:new).and_return(colour_a_pix_instance)
-        allow(colour_a_pix_instance).to receive(:execute)
+        allow_any_instance_of(Commands::ColourAPixel).to receive(:new)
+        allow_any_instance_of(Commands::ColourAPixel).to receive(:execute)
       end
 
       it 'raises a no bitmap error if there is no bitmap to show' do
-        expect { bitmap_editor.run("S") }.to raise_error no_bitmap_error, no_bitmap_message
+        expect { bitmap_editor.run("L 1 1 R") }.to raise_error no_bitmap_error, no_bitmap_message
       end
 
       it 'instantiates the colour pixel command with correct params' do
@@ -78,6 +89,29 @@ RSpec.describe BitmapEditor do
         create_bitmap(bitmap_editor)
         expect(colour_a_pix_instance).to receive(:execute).once
         bitmap_editor.run("L 1 1 R")
+      end
+    end
+
+    describe 'H command - draws a horizontal line in a given colour' do
+      before do
+        allow_any_instance_of(Commands::HorizontalLine).to receive(:initialize)
+        allow_any_instance_of(Commands::HorizontalLine).to receive(:execute)
+      end
+
+      it 'raises a no bitmap error if there is no bitmap to show' do
+        expect { bitmap_editor.run("H 3 5 2 Z") }.to raise_error no_bitmap_error, no_bitmap_message
+      end
+
+      it 'instantiates the colour pixel command with correct params' do
+        create_bitmap(bitmap_editor)
+        expect(horizontal_line_klass).to receive(:new).with(bitmap_instance, ["3", "5", "2", "Z"]).once
+        bitmap_editor.run("H 3 5 2 Z")
+      end
+
+      it 'calls execute' do
+        create_bitmap(bitmap_editor)
+        expect(horizontal_line_instance).to receive(:execute).once
+        bitmap_editor.run("H 3 5 2 Z")
       end
     end
 

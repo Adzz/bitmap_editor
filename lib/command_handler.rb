@@ -1,13 +1,13 @@
-class CommandHandler
-  COMMANDS = {
-    "L" => Command::ColourAPixel,
-  }
+# class CommandHandler
+#   COMMANDS = {
+#     "L" => Command::ColourAPixel,
+#   }
 
-  def initialize(bitmap)
-    @bitmap = bitmap
-  end
+#   def initialize(bitmap)
+#     @bitmap = bitmap
+#   end
 
-  def execute(command, args)
-    COMMANDS[command].new(args)
-  end
-end
+#   def execute(command, args)
+#     COMMANDS[command].new(args)
+#   end
+# end
