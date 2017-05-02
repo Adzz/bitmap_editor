@@ -1,5 +1,5 @@
-module Commands
-  class HorizontalLine
+module Command
+  class VerticalLine
     REQUIRED_LENGTH_OF_ARGS = 4
 
     def initialize(bitmap, args)
@@ -15,7 +15,7 @@ module Commands
 
     def execute
       start.upto(finish).each do |y_coordinate|
-        Validate::Coordinates.new(column, y_coordinate, bitmap)
+        Validate::Coordinates.new.(column, y_coordinate, bitmap)
         bitmap.colour_a_pixel(column, y_coordinate, colour)
       end
       bitmap

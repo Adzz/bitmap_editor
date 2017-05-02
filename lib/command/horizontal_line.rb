@@ -1,4 +1,4 @@
-module Commands
+module Command
   class HorizontalLine
     REQUIRED_LENGTH_OF_ARGS = 4
 
@@ -15,7 +15,7 @@ module Commands
 
     def execute
       start.upto(finish).each do |x_coordinate|
-        Validate::Coordinates.new(x_coordinate, row, bitmap)
+        Validate::Coordinates.new.(x_coordinate, row, bitmap)
         bitmap.colour_a_pixel(x_coordinate, row, colour)
       end
       bitmap

@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+# Dir[File.join(File.dirname(__FILE__), 'lib/validate/*.rb')].each { |f| require f }
+# Dir[File.join(File.dirname(__FILE__), 'lib/commands/*.rb')].each { |f| require f }
+# Dir[File.join(File.dirname(__FILE__), 'lib/bitmap_editor_errors/*.rb')].each { |f| require f }
+# Dir[File.join(File.dirname(__FILE__), 'lib/**/*.rb')].each { |f| require f }
+
 require './lib/bitmap_editor_errors/bitmap_creation_error'
 require './lib/bitmap_editor_errors/no_bitmap'
 require './lib/bitmap_editor_errors/invalid_argument'

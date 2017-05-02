@@ -1,4 +1,4 @@
-module Commands
+module Command
   class ColourAPixel
     REQUIRED_LENGTH_OF_ARGS = 3
 
@@ -10,7 +10,7 @@ module Commands
       @colour = args.last.upcase
       @bitmap = bitmap
       Validate::Colour.new.(colour)
-      Validate::Coordinates.new(x_coord, y_coord, bitmap)
+      Validate::Coordinates.new.(x_coord, y_coord, bitmap)
     end
 
     def execute

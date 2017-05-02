@@ -1,5 +1,6 @@
 require "pry"
 
+Dir["./spec/support/**/*.rb"].each {|f| require f}
 Dir[File.join(File.dirname(__FILE__), "../lib/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|

@@ -1,4 +1,4 @@
-RSpec.describe Command::HorizontalLine do
+RSpec.describe Command::VerticalLine do
   let(:bitmap) { instance_double Bitmap }
   let(:command) { described_class.new(bitmap, ["1", "2", "1", "A"]) }
 

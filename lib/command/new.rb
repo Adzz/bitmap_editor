@@ -1,4 +1,4 @@
-module Commands
+module Command
   class New
     REQUIRED_LENGTH_OF_ARGS = 2
 
@@ -8,11 +8,11 @@ module Commands
       @width = args[0].to_i
       @height = args[1].to_i
 
-      Validate::Coordinates.new(width, height)
+      Validate::Coordinates.new.(@width, @height)
     end
 
     def execute
-      Bitmap.new(width, height)
+      Bitmap.new(@width, @height)
     end
   end
 end

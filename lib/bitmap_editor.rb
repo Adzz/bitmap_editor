@@ -1,4 +1,4 @@
-require_relative './validators/argument_validator.rb'
+require_relative './validate/command.rb'
 
 class BitmapEditor
   attr_reader :bitmap

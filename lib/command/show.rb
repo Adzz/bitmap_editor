@@ -1,4 +1,4 @@
-module Commands
+module Command
   class Show
     REQUIRED_LENGTH_OF_ARGS = 0
 
