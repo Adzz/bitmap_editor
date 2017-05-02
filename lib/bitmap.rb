@@ -2,10 +2,9 @@ class Bitmap
   attr_reader :height, :width, :image
   DEFAULT_COLOR = "O"
 
-  def initialize(args, validator = Validators::CoordinateValidator.new)
-    @width = args[0].to_i
-    @height = args[1].to_i
-    validator.(width, height)
+  def initialize(width, height)
+    @width = width
+    @height = height
     @image = Array.new(height) { Array.new(width, DEFAULT_COLOR) }
   end
 

@@ -10,23 +10,7 @@ class BitmapEditor
     command, *args = command_string.split
     raise BitmapEditorErrors::NoBitmap unless @bitmap || command == "I"
     validator.new.(command, args)
-
-    # CommandHandler.new.execute(command_string, args)
-
-    case command
-    when 'I'
-      @bitmap = bitmap_klass.new(args)
-    when 'C'
-      @bitmap = bitmap_klass.new(["#{bitmap.width}", "#{bitmap.height}"])
-    when 'L'
-      @bitmap = Commands::ColourAPixel.new(bitmap, args).execute
-    when 'H'
-      @bitmap = Commands::HorizontalLine.new(bitmap, args).execute
-    when 'S'
-      puts bitmap
-    else
-      puts 'unrecognised command :('
-    end
+    @bitmap = CommandHandler.new.execute(command, args)
   end
 
  private
