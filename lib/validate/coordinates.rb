@@ -1,5 +1,5 @@
-module Validators
-  class CoordinateValidator
+module Validate
+  class Coordinates
     BOARD_RANGE = (1..250).to_a
 
     def call(x, y, bitmap = false)

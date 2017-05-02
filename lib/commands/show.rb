@@ -1,11 +1,14 @@
 module Commands
   class Show
+    REQUIRED_LENGTH_OF_ARGS = 0
+
     def initialize(bitmap, args)
-      @sub_command = Commands::New.new(bitmap, [bitmap.width, bitmap.height])
+      Validate::NumberOfArguments.new.(args.length, REQUIRED_LENGTH_OF_ARGS)
+      @bitmap = bitmap
     end
 
     def execute
-      @sub_command.execute
+      puts @bitmap
     end
   end
 end

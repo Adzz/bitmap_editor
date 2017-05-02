@@ -1,17 +1,31 @@
 #!/usr/bin/env ruby
-require './lib/bitmap_editor_error/bitmap_creation_error'
-require './lib/bitmap_editor_error/no_bitmap'
+require './lib/bitmap_editor_errors/bitmap_creation_error'
+require './lib/bitmap_editor_errors/no_bitmap'
+require './lib/bitmap_editor_errors/invalid_argument'
+require './lib/bitmap_editor_errors/invalid_colour'
+require './lib/bitmap_editor_errors/invalid_coordinate'
+require './lib/bitmap_editor_errors/unrecognised_command'
+
 require './lib/batch_runner'
+require './lib/commands/new.rb'
+require './lib/commands/clear'
+require './lib/commands/colour_a_pixel'
+require './lib/commands/horizontal_line'
+require './lib/commands/show'
+require './lib/validators/argument_validator'
+require './lib/validators/coordinate_validator'
+# require './lib/commands/vertical_line'
+require './lib/command_handler'
 require './lib/bitmap'
 require './lib/bitmap_editor'
 
 puts "Get Ready..."
-sleep(1)
+# sleep(1)
 puts "...to be..."
-sleep(2)
+# sleep(2)
 puts
 puts "Amazed."
-sleep(1)
+# sleep(1)
 puts
 puts "===================================="
 puts "||   \\                       /    ||"

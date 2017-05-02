@@ -4,11 +4,11 @@ class CommandHandler
     "C" => Commands::Clear,
     "L" => Commands::ColourAPixel,
     "H" => Commands::HorizontalLine,
-    "V" => Command::VerticalLine,
-    "S" => Command::Show,
+    "V" => Commands::VerticalLine,
+    "S" => Commands::Show,
   }
 
-  def execute(command, args, bitmap)
+  def run_command(bitmap, command, args)
     COMMANDS[command].new(bitmap, args).execute
   end
 
