@@ -25,8 +25,10 @@ RSpec.describe Command::ColourAPixel do
     let(:y_coord) { 1 }
   end
 
-  it 'calls colour_a_pixel on bitmap with the correct arguments' do
-    expect(bitmap).to receive(:colour_a_pixel).with(1, 1, "A").once
-    command.execute
+  describe '#execute' do
+    it 'calls colour_a_pixel on bitmap with the correct arguments' do
+      expect(bitmap).to receive(:colour_a_pixel).with(1, 1, "A").once
+      command.execute
+    end
   end
 end

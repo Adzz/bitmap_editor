@@ -15,5 +15,6 @@ class Bitmap
   def colour_a_pixel(x, y, colour)
     # arrays are 0 indexed, our bitmap is not
     image[(x - 1)][(y - 1)] = colour
+    image
   end
 end

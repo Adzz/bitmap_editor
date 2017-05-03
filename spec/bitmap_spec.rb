@@ -1,20 +1,8 @@
 RSpec.describe Bitmap do
-  let(:validator) { instance_double Validators::CoordinateValidator }
-  subject(:bitmap) { described_class.new(["2", "2"], validator) }
-
-  before do
-    allow(validator).to receive(:call)
-  end
-
-  context 'validations' do
-    it "validates the coordinates" do
-      expect(validator).to receive(:call).with(2, 2).once
-      bitmap
-    end
-  end
+  subject(:bitmap) { described_class.new(2, 2) }
 
   describe '#image' do
-    it 'creates an image of the default colour' do
+    it 'returns an image of the default colour' do
       expect(bitmap.image).to eq [["O", "O"], ["O", "O"]]
     end
   end

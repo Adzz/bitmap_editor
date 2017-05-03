@@ -1,9 +1,6 @@
 module Command
   class Show
-    REQUIRED_LENGTH_OF_ARGS = 0
-
-    def initialize(bitmap, args)
-      Validate::NumberOfArguments.new.(args.length, REQUIRED_LENGTH_OF_ARGS)
+    def initialize(bitmap)
       @bitmap = bitmap
     end
 
