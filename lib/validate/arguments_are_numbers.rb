@@ -9,7 +9,7 @@ module Validate
     private
 
     def letter?(string)
-      string =~ /[[:alpha:]]/
+      !!(string =~ /[[:alpha:]]/)
     end
   end
 end

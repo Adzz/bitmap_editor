@@ -1,8 +1,9 @@
 require_relative './command/new.rb'
 require_relative './command/clear.rb'
 require_relative './command/colour_a_pixel.rb'
-require_relative './command/horizontal_line.rb'
-require_relative './command/vertical_line.rb'
+require_relative './command/line/horizontal_line.rb'
+require_relative './command/line/vertical_line.rb'
+require_relative './command/draw_a_line.rb'
 require_relative './command/show.rb'
 
 class CommandHandler
@@ -10,8 +11,8 @@ class CommandHandler
     "I" => Command::New,
     "C" => Command::Clear,
     "L" => Command::ColourAPixel,
-    "H" => Command::HorizontalLine,
-    "V" => Command::VerticalLine,
+    "H" => Command::DrawALine,
+    "V" => Command::DrawALine,
     "S" => Command::Show,
   }
 
