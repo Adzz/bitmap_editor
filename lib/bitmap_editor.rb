@@ -26,9 +26,10 @@ class BitmapEditor
 
     case command.upcase
     when 'I'
+      binding.pry
       @bitmap = Command::New.new(args).execute
     when 'C'
-      @bitmap = Command::Clear.new.new(bitmap).execute
+      @bitmap = Command::Clear.new(bitmap).execute
     when "L"
       @bitmap = Command::ColourAPixel.new(bitmap, args).execute
     when "H"
