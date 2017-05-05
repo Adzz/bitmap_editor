@@ -30,5 +30,9 @@ RSpec.describe Command::ColourAPixel do
       expect(bitmap).to receive(:colour_a_pixel).with(1, 1, "A").once
       command.execute
     end
+
+    it 'returns the modified state' do
+      expect(command.execute).to eq bitmap
+    end
   end
 end

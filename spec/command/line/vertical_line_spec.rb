@@ -1,13 +1,15 @@
 RSpec.describe VerticalLine do
   describe '#coordinates' do
+    let(:result) { [[3, 1], [3, 2], [3, 3]] }
+
     it 'generates an array of coordinates for the line' do
-      horizontal_line = described_class.new([1, 1, 2])
-      expect(horizontal_line.coordinates).to eq [[1, 1], [1, 2]]
+      vertical_line = described_class.new([3, 1, 3])
+      expect(vertical_line.coordinates).to eq result
     end
 
     it 'order of the start and finish (length) arguments dont matter' do
-      horizontal_line = described_class.new([1, 2, 1])
-      expect(horizontal_line.coordinates).to eq [[1, 1], [1, 2]]
+      vertical_line = described_class.new([3, 3, 1])
+      expect(vertical_line.coordinates).to eq result
     end
   end
 end

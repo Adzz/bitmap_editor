@@ -26,8 +26,11 @@ RSpec.describe Bitmap do
   end
 
   describe '#colour_a_pixel' do
-    it 'changes the colour of a given pixel' do
+    it 'changes the colour of a given pixel on the x bound' do
       expect(bitmap.colour_a_pixel(1, 1, "R")).to eq [["R", "O"], ["O", "O"]]
+      expect(bitmap.colour_a_pixel(2, 1, "R")).to eq [["R", "R"], ["O", "O"]]
+      expect(bitmap.colour_a_pixel(1, 2, "R")).to eq [["R", "R"], ["R", "O"]]
+      expect(bitmap.colour_a_pixel(2, 2, "R")).to eq [["R", "R"], ["R", "R"]]
     end
   end
 end

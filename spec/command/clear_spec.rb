@@ -1,7 +1,7 @@
 RSpec.describe Command::Clear do
   include_context "stubbed bitmap height and width"
 
-  let(:bitmap)    {instance_double Bitmap }
+  let(:bitmap) {instance_double Bitmap }
   subject(:command) { described_class.new(bitmap) }
 
   describe '#execute' do

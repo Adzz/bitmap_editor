@@ -7,7 +7,7 @@ module Validate
       "V",
       "H",
       "S"
-    ]
+    ].freeze
 
     def call(command)
       raise BitmapEditorErrors::UnrecognisedCommand.new unless COMMANDS.include?(command)

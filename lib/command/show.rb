@@ -1,11 +1,12 @@
 module Command
   class Show
-    def initialize(bitmap)
+    def initialize(bitmap, output = $stdout)
       @bitmap = bitmap
+      @output = output
     end
 
     def execute
-      puts @bitmap
+      @output.puts @bitmap
     end
   end
 end

@@ -1,36 +1,32 @@
 #!/usr/bin/env ruby
-# Dir[File.join(File.dirname(__FILE__), 'lib/validate/*.rb')].each { |f| require f }
-# Dir[File.join(File.dirname(__FILE__), 'lib/commands/*.rb')].each { |f| require f }
-# Dir[File.join(File.dirname(__FILE__), 'lib/bitmap_editor_errors/*.rb')].each { |f| require f }
-# Dir[File.join(File.dirname(__FILE__), 'lib/**/*.rb')].each { |f| require f }
-
-require './lib/bitmap_editor_errors/bitmap_creation_error'
-require './lib/bitmap_editor_errors/no_bitmap'
-require './lib/bitmap_editor_errors/invalid_argument'
-require './lib/bitmap_editor_errors/invalid_colour'
-require './lib/bitmap_editor_errors/invalid_coordinate'
-require './lib/bitmap_editor_errors/unrecognised_command'
-
 require './lib/batch_runner'
-require './lib/commands/new.rb'
-require './lib/commands/clear'
-require './lib/commands/colour_a_pixel'
-require './lib/commands/horizontal_line'
-require './lib/commands/show'
-require './lib/validators/argument_validator'
-require './lib/validators/coordinate_validator'
-# require './lib/commands/vertical_line'
-require './lib/command_handler'
-require './lib/bitmap'
-require './lib/bitmap_editor'
 
-puts "Get Ready..."
-# sleep(1)
-puts "...to be..."
-# sleep(2)
+
+puts "===================================="
+puts "||   \\                       /    ||"
+puts "|| -         Get Ready...       -  ||"
+puts "||   /                       \\    ||"
+puts "===================================="
+puts "            ||     ||               "
+puts "            ||     ||               "
+sleep(1)
+puts "===================================="
+puts "||   \\                       /    ||"
+puts "|| -        ...to be...         -  ||"
+puts "||   /                       \\    ||"
+puts "===================================="
+puts "            ||     ||               "
+puts "            ||     ||               "
+sleep(2)
+puts "===================================="
+puts "||   \\                       /    ||"
+puts "|| -       A M A Z E D !        -  ||"
+puts "||   /                       \\    ||"
+puts "===================================="
+puts "            ||     ||"
+puts "            ||     ||"
 puts
-puts "Amazed."
-# sleep(1)
+sleep(1)
 puts
 puts "===================================="
 puts "||   \\                       /    ||"
@@ -46,7 +42,7 @@ puts "    ----                  ----    "
 puts "-----                        -----"
 puts
 puts
-
+sleep(1)
 
 begin
   BatchRunner.new(ARGV.first).run

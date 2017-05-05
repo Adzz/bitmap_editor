@@ -1,8 +1,8 @@
 class VerticalLine
   def initialize(args)
-    @start  = [args[1].to_i, args[2].to_i].sort.min
-    @finish = [args[1].to_i, args[2].to_i].sort.max
-    @x_coordinate = args[0].to_i
+    @start  = [args.fetch(1).to_i, args.fetch(2).to_i].sort.min
+    @finish = [args.fetch(1).to_i, args.fetch(2).to_i].sort.max
+    @x_coordinate = args.fetch(0).to_i
   end
 
   def coordinates
