@@ -14,7 +14,8 @@ RSpec.describe BitmapEditor do
     end
 
     it 'validtes the command given' do
-      expect_any_instance_of(Validate::Command).to receive(:call).with("I")
+      stub_const("BitmapEditor::COMMANDS", ["I", "A"])
+      expect_any_instance_of(Validate::Command).to receive(:call).with("I", ["I", "A"])
       create_bitmap(bitmap_editor)
     end
 
